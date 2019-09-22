@@ -1,0 +1,41 @@
+<router-outlet></router-outlet>
+
+<div class="container col-md-1">
+</div>
+<div class="container col-md-10">
+  <h1>Maps</h1>
+  <form>
+    <div class="form-group">
+      <label for="from">From</label>
+      <input type="text" placeholder="xx.xxx, yy.yyy" class="form-control" id="from" name="from" required [(ngModel)]="fromCoordinates">
+    </div>
+
+    <div class="form-group">
+      <label for="to">To</label>
+      <input type="text"placeholder="xx.xxx, yy.yyy"  class="form-control" id="to" name="to" required [(ngModel)]="toCoordinates">
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="calculateDistances()">Calculate Distances</button>
+    <button type="reset" class="btn btn-danger">Cancel</button>
+
+  </form>
+  <br>
+
+  <div class="alert alert-success" role="alert">
+    <b>Distance</b> : {{direction.distance}}
+  </div>
+
+  <div class="alert alert-danger" role="alert">
+    <b>Haversine distance</b> : {{haversineDistance.haversineDistance}}
+  </div>
+
+
+  <agm-map [latitude]="currentLat" [longitude]="currentLng">
+    <agm-direction [origin]="fromCoordinates" [destination]="toCoordinates">
+    </agm-direction>
+  </agm-map>
+</div>
+
+
+<div class="container col-md-1"></div>
+
